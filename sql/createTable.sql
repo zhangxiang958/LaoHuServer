@@ -1,5 +1,6 @@
 use knowledge;
 
+SET FOREIGN_KEY_CHECKS = 0;
 /* 团队表 */
 DROP TABLE IF EXISTS `team`;
 CREATE TABLE `team` (
@@ -19,7 +20,7 @@ CREATE TABLE `member` (
 	`sex` 			VARCHAR(5) NOT NULL,					/* 成员性别 */
 	`avatar`		VARCHAR(100),
 
-	`team_id` 		VARCHAR(50) NOT NULL,				/* 所属团队 id */
+	`team_id` 		INT(10) NOT NULL,				/* 所属团队 id */
 	`position` 		VARCHAR(15) NOT NULL,				/* 职位 */
 
 	`grade` 		VARCHAR(4) NOT NULL,					/* 年级, 如 2014*/
@@ -34,7 +35,8 @@ CREATE TABLE `member` (
 
 	`job` 			VARCHAR(30),					/* 工作岗位 */
 	`location` 		VARCHAR(50),				/* 现工作地 */
-	FOREIGN KEY (`team_id`) REFERENCES `team`(`team_id`)
+	KEY `r_team` (`team_id`),
+	CONSTRAINT `r_team` FOREIGN KEY (`team_id`) REFERENCES `team`(`team_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /* 管理员表 */
@@ -48,9 +50,9 @@ CREATE TABLE `admin` (
 /* 类别表 */
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
-	`id` 	INT(10)  PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`name`	VARCHAR(10)
-);
+	`id` 	INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`name`	VARCHAR(20)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /* 文章表 */
 DROP TABLE IF EXISTS `article`;
@@ -82,8 +84,8 @@ CREATE TABLE `article2tag` (
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
 	`comment_id` 	INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`fromWho` 		VARCHAR(50) NOT NULL,
-	`toWho` 		VARCHAR(50) NOT NULL,
+	`fromWho` 		INT(10) NOT NULL,
+	`toWho` 		INT(10) NOT NULL,
 	`comment_time` 	DATE NOT NULL,
 	`comment_text` 	VARCHAR(100) NOT NULL,
 	`article_id`	INT(10)
@@ -93,8 +95,8 @@ CREATE TABLE `comment` (
 DROP TABLE IF EXISTS `commentReply`;
 CREATE TABLE `commentReply` (
 	`reply_id` 			INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`toComment_id` 		VARCHAR(50) NOT NULL,
-	`fromWho` 			VARCHAR(50) NOT NULL,
+	`toComment_id` 		INT(10) NOT NULL,
+	`fromWho` 			INT(10) NOT NULL,
 	`toWho`				VARCHAR(50) NOT NULL,
 	`reply_time` 		DATE NOT NULL,
 	`reply_text` 		VARCHAR(100) NOT NULL
