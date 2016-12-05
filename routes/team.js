@@ -3,7 +3,10 @@ var router = express.Router();
 var Proxy = require('../proxy');
 
 router.get('/', function(req, res, next){
-	res.send('team');
+	Proxy.team.getAllTeam(function(err, vals){
+
+		res.send(vals);
+	});
 });
 
 module.exports = router;
