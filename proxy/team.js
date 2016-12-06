@@ -1,6 +1,6 @@
 var db = require("../models/database.js");
 
-exports.getAllTeam = function(accounts, callback){
+exports.getAllTeam = function(callback){
 	var sql = "select * from knowledge.team";
 	console.log(sql);
 	db.query(sql, function(err, vals, fields){
