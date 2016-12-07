@@ -10,3 +10,11 @@ exports.adminLogin = function(accounts, callback){
 		callback(err, vals, fields);
 	}); 
 }
+
+exports.getAllAdmin = function(callback){
+	var sql = "select * from knowledge.admin";
+
+	db.query(sql, function(err, vals, fields){
+		callback(err, vals, fields);
+	});
+}

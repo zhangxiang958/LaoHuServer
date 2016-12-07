@@ -32,4 +32,16 @@ router.post('/', function(req, res, next) {
 	});
 });
 
+router.get('/getAdmin', function(req, res, next){
+	Proxy.admin.getAllAdmin(function(err, vals){
+		if(err) {
+			res.send({
+				err: err
+			});
+		} else {
+			res.send(vals);
+		}
+	});
+});
+
 module.exports = router;
