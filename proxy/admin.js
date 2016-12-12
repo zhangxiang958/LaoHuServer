@@ -18,3 +18,19 @@ exports.getAllAdmin = function(callback){
 		callback(err, vals, fields);
 	});
 }
+
+exports.editAdmin = function(id, data, callback){
+	// var sql = 'select * from knowledge.admin where admin_id=' + db.pool.escape(id);
+
+	var sql = 'update knowledge.admin ' +
+			  'set accounts=' +  db.pool.escape(data.accounts) + ", " 
+			  + 'password=' + db.pool.escape(data.password) +
+			  ' where admin_id=' + db.pool.escape(id);
+	console.log(sql);
+
+	db.query(sql, function(err, vals, fields){
+		console.log(vals);
+
+		callback(err, vals, fields);
+	});
+}

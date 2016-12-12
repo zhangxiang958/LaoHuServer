@@ -44,4 +44,28 @@ router.get('/getAdmin', function(req, res, next){
 	});
 });
 
+router.put('/editAdmin/:adminId', function(req, res, next){
+	var id 		= req.params.adminId; 
+	var data = {
+		accounts: req.body.accounts,
+		password: req.body.password
+	}
+
+	console.log(id);
+	console.log(data);
+	Proxy.admin.editAdmin(id, data, function(err, vals){
+		if(err) {
+			res.send({
+				code: 1,
+				msg: err
+			});
+		} else {
+			res.send({
+				code: 0,
+				msg: "success"
+			});
+		}
+	});
+});
+
 module.exports = router;

@@ -10,4 +10,42 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+
+router.put('/editUser/:userId', function(req, res, next){
+	var id 		= req.params.userId; 
+	var data = {
+		member_name: req.body.member_name,
+		sex: req.body.sex,
+		avatar: req.body.avatar,
+		team_id: req.body.team_id,
+		position: req.body.position,
+		grade: req.body.grade,
+		academy: req.body.academy,
+		major: req.body.major,
+		class: req.body.class,
+		email: req.body.email,
+		tele: req.body.tele,
+		wechat: req.body.wechat,
+		QQ: req.body.QQ,
+		job: req.body.job,
+		location: req.body.location
+	}
+
+	console.log(id);
+	console.log(data);
+	Proxy.user.editUser(id, data, function(err, vals){
+		if(err) {
+			res.send({
+				code: 1,
+				msg: err
+			});
+		} else {
+			res.send({
+				code: 0,
+				msg: "success"
+			});
+		}
+	});
+});
+
 module.exports = router;
