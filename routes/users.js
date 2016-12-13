@@ -48,4 +48,22 @@ router.put('/editUser/:userId', function(req, res, next){
 	});
 });
 
+router.delete('/deleteUser/:userId', function(req, res, next){
+	var id = req.params.userId;
+
+	Proxy.user.deleteUser(id, function(err, vals){
+		if(err) {
+			res.send({
+				code: 1,
+				msg: err
+			});
+		} else {
+			res.send({
+				code: 0,
+				msg: "success"
+			});
+		}
+	});
+});
+
 module.exports = router;

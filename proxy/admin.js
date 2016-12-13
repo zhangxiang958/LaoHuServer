@@ -34,3 +34,13 @@ exports.editAdmin = function(id, data, callback){
 		callback(err, vals, fields);
 	});
 }
+
+exports.deleteAdmin = function(req, res, next){
+	var sql = 'DELETE FROM knowledge.admin WHERE admin_id=' + db.pool.escape(id);
+
+	db.query(sql, function(err, vals, fields){
+		console.log(vals);
+
+		callback(err, vals, fields);
+	});
+}

@@ -28,3 +28,13 @@ exports.editAticle = function(id, data, callback){
 		callback(err, vals, fields);
 	});
 }
+
+exports.deleteArticle = function(id, callback){
+	var sql = 'DELETE FROM knowledge.article WHERE article_id=' + db.pool.escape(id);
+
+	db.query(sql, function(err, vals, fields){
+		console.log(vals);
+
+		callback(err, vals, fields);
+	});
+}
