@@ -9,6 +9,31 @@ router.get('/', function(req, res, next){
 	});
 });
 
+router.post('/addArticle', function(req, res, next){
+	var data = {
+		title: req.body.title,
+		author: req.body.author,
+		publish_time: req.body.publish_time,
+		link: req.body.link,
+		summary: req.body.summary,
+		article_body: req.body.article_body
+	};
+
+	Proxy.article.addArticle(data, function(err, vals){
+		if(err) {
+			res.send({
+				code: 1, 
+				msg: err
+			});
+		} else {
+			res.send({
+				code: 0,
+				msg: "success"
+			});
+		}
+	});
+});
+
 router.put('/editArticle/:articleId', function(req, res, next){
 	var id 		= req.params.articleId;
 

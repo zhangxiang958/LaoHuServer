@@ -12,6 +12,34 @@ exports.getAllUser = function(callback){
 }
 
 
+exports.addUser = function(data, callback){
+
+	var sql = "INSERT INTO knowledge.member(member_name, sex, avatar, team_id, position, grade, academy, major, class, email, tele, wechat, QQ, job, location) VALUES (" +
+				"'" + data.member_name + "'" + ", " +
+				"'" + data.sex + "'" + ", " +
+				"'" + data.avatar + "'" + ", " +
+				"'" + data.team_id + "'" + ", " +
+				"'" + data.position + "'" + ", " +
+				"'" + data.grade + "'" + ", " +
+				"'" + data.academy + "'" + ", " +
+				"'" + data.major + "'" + ", " +
+				"'" + data.class + "'" + ", " +
+				"'" + data.email + "'" + ", " +
+				"'" + data.tele + "'" + ", " +
+				"'" + data.wechat + "'" + ", " +
+				"'" + data.QQ + "'" + ", " +
+				"'" + data.job + "'" + ", " +
+				"'" + data.location + "'" + ")";
+
+
+	console.log(sql);
+	db.query(sql, function(err, vals, fields){
+		console.log(err);
+		
+		callback(err, vals, fields);
+	})
+}
+
 exports.editUser = function(id, data, callback){
 	var sql = 'update knowledge.member ' +
 			  'set member_name=' +  db.pool.escape(data.member_name) + ", " 

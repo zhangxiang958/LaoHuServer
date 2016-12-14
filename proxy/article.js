@@ -9,6 +9,23 @@ exports.getAllArticle = function(callback){
 	});
 }
 
+exports.addArticle = function(data, callback){
+	var sql = "INSERT INTO knowledge.article(title, author, publish_time, link, summary, article_body) VALUES (" +
+				"'" + data.title + "'" + ", " +
+				"'" + data.author + "'" + ", " +
+				"'" + data.publish_time + "'" + ", " +
+				"'" + data.link + "'" + ", " +
+				"'" + data.summary + "'" + ", " +
+				"'" + data.article_body + "'" + ")";
+
+	console.log(sql);	
+
+	db.query(sql, function(err, vals, fields){
+
+		callback(err, vals, fields);
+	});
+};
+
 exports.editAticle = function(id, data, callback){
 	var sql = 'update knowledge.article ' +
 			  'set title=' +  db.pool.escape(data.title) + ", " 

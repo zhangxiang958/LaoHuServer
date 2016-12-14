@@ -15,9 +15,23 @@ exports.getAllAdmin = function(callback){
 	var sql = "select * from knowledge.admin";
 
 	db.query(sql, function(err, vals, fields){
+		
 		callback(err, vals, fields);
 	});
 }
+
+exports.addAdmin = function(data, callback){
+	var sql = "INSERT INTO knowledge.admin(accounts, password) VALUES (" +
+				"'" + data.accounts + "'" + ", " +
+				"'" + data.password + "'" + ")";
+
+	console.log(sql);			
+	db.query(sql, function(err, vals, fields){
+		console.log(err);
+		callback(err, vals, fields);
+	});
+}
+
 
 exports.editAdmin = function(id, data, callback){
 	// var sql = 'select * from knowledge.admin where admin_id=' + db.pool.escape(id);

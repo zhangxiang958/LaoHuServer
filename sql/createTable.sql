@@ -43,8 +43,8 @@ CREATE TABLE `member` (
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
 	`admin_id` INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`accounts` VARCHAR(10),
-	`password` VARCHAR(100)
+	`accounts` VARCHAR(10) NOT NULL,
+	`password` VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /* 类别表 */
